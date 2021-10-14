@@ -1,22 +1,26 @@
-import cv2
-import numpy as nm
+import pickle
 
+from db import db_session
+from models import Photo, RandomChecker
 from get_img import get_img
 from time import sleep
 
 
 def write_img():
-    img_num = 1
-    seconds_left = 50400
-    while seconds_left > 0:
+    while True:
         img = get_img()
-        img_name = 'dataset/image' + str(img_num) + '.jpg'
-        cv2.imwrite(img_name, img)
-        img_name = 'dataset/image' + str(img_num) + '.npy'
-        nm.save(img_name, img)
-        seconds_left -= 300
-        img_num += 1
-        sleep(240)
+        db_photo = pickle.dumps(img)
+        random_answer = RandomChecker()
+        check_result = random_answer()
+        new_photo = Photo(
+            camera_name='Home cam',
+            photo=db_photo,
+            detect=check_result
+        )
+        db_session.add(new_photo)
+        db_session.commit()
+        # Set time between image records in seconds
+        sleep(5)
 
 
 if __name__ == "__main__":
