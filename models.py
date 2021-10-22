@@ -1,5 +1,3 @@
-import random
-
 from datetime import datetime
 
 from sqlalchemy.sql.sqltypes import Boolean
@@ -27,11 +25,6 @@ class User(Base):
 
     def __repr__(self):
         return f'<User {self.name} {self.email}>'
-
-
-class RandomChecker():
-    def __call__(self):
-        return random.choice([True, False])
 
 
 if __name__ == "__main__":

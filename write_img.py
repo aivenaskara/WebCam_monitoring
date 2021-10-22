@@ -1,8 +1,9 @@
 import pickle
 
 from db import db_session
-from models import Photo, RandomChecker
 from get_img import get_img
+from models import Photo
+from random_checker import RandomChecker
 from time import sleep
 
 

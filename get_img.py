@@ -1,14 +1,17 @@
 import cv2
+from config import CAM_ID, CAM_WIGHT, CAM_HEIGHT
+
+cam_id = CAM_ID
+cam_wight = CAM_WIGHT
+cam_height = CAM_HEIGHT
 
 
 def get_img():
-    # Set 0 if use notebook webcam or you have only one usb-webcam
-    # Set 1 if you use additional webcam
-    cap = cv2.VideoCapture(0)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)  # width of video
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)  # height of video
+    cap = cv2.VideoCapture(cam_id)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, cam_wight)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, cam_height)
     try:
-        ret, img = cap.read()
+        img = cap.read()
         cap.release()
     except cv2.error as e:
         print(e)
