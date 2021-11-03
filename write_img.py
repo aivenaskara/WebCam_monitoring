@@ -6,6 +6,8 @@ from models import Photo
 from random_checker import RandomChecker
 from time import sleep
 
+from camera_config import IMG_FREQUENCY
+
 
 def write_img():
     while True:
@@ -20,8 +22,7 @@ def write_img():
         )
         db_session.add(new_photo)
         db_session.commit()
-        # Set time between image records in seconds
-        sleep(5)
+        sleep(IMG_FREQUENCY)
 
 
 if __name__ == "__main__":

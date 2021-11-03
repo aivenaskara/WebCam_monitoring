@@ -131,7 +131,8 @@ dmypy.json
 
 # Data folder and base
 /dataset
-dataset.db
 
 # Config file
-config.py
+camera_config.py
+webapp/config.py
+run.bat
