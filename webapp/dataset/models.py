@@ -7,3 +7,6 @@ class Photo(db.Model):
     photo = db.Column(db.BLOB)
     created_on = db.Column(db.DateTime())
     detect = db.Column(db.Boolean)
+
+    def __repr__(self):
+        return 'Дата записи {} обнаружение: {}'.format(self.created_on, self.detect)
