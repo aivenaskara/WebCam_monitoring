@@ -1,5 +1,5 @@
 import cv2
-from camera_config import CAM_ID, CAM_WIGHT, CAM_HEIGHT
+from security_config import CAM_ID, CAM_WIGHT, CAM_HEIGHT
 
 
 def get_img():
@@ -7,7 +7,7 @@ def get_img():
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, CAM_WIGHT)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, CAM_HEIGHT)
     try:
-        img = cap.read()
+        ret, img = cap.read()
         cap.release()
     except cv2.error as e:
         print(e)

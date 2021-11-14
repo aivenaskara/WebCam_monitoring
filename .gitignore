@@ -134,6 +134,7 @@ dmypy.json
 dataset.db
 
 # Config file
-camera_config.py
+security_config.py
+gmail_settings.py
 webapp/config.py
 run.bat
