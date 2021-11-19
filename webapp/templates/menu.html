@@ -1,0 +1,28 @@
+<header class="mb-auto">
+    <div>
+        <h3 class="float-md-start mb-0">Проект "Сигнализация"</h3>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+            {% if current_user.is_authenticated %}
+                <span class="nav-link">Привет, {{ current_user.username }}!</span>
+                {% if current_user.is_admin %}
+                    <a class="nav-link" href="{{ url_for('admin.admin_index') }}">Админка</a>
+                {% endif %}
+                    <a class="nav-link" href="{{ url_for('user.logout') }}">Выйти</a>
+            {% else %}
+                <a class="nav-link active" aria-current="page" href="/">На главную</a>
+                <a class="nav-link" href="{{ url_for('user.register') }}">Регистрация</a>
+                <a class="nav-link" href="{{ url_for('user.login') }}">Вход</a>
+            {% endif %}
+        </nav>
+        <br>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-light" role="alert">
+                {% for message in messages %}
+                    {{ message }}<br>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %} 
+      </div>
+</header>

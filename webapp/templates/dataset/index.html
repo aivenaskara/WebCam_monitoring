@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h2>Архив записей</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Дата</th>
+                <th scope="col">Время</th>
+                <th scope="col">Обнаружен человек</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for record in records_list %}
+                <tr>
+                    <th scope="row">{{ number }}</th>
+                    <td><a class="table-link" href="{{ url_for('dataset.show_photo', photo_id=record.id) }}" target="_blank">{{ record.created_on.strftime('%d.%m.%Y') }}</a></td>
+                    <td><a class="table-link" href="{{ url_for('dataset.show_photo', photo_id=record.id) }}" target="_blank">{{ record.created_on.strftime('%H:%M:%S') }}</a></td>
+                    <td><a class="table-link" href="{{ url_for('dataset.show_photo', photo_id=record.id) }}" target="_blank">
+                    {% if record.detect == True %}
+                    Да
+                    {% else %}
+                    Нет
+                    {% endif %}
+                    </a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <nav aria-label="Страницы с записями">
+        </br>
+            <ul class="pagination pagination-sm justify-content-center">
+              <li class="page-item">
+                <a class="page-link" href="{{ prev_url }}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link" href="/dataset/?page=1">1</a></li>
+              <li class="page-item"><a class="page-link" href="/dataset/?page=2">2</a></li>
+              <li class="page-item"><a class="page-link" href="/dataset/?page=3">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="{{ next_url }}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+
+    </div>
+</div>
+{% endblock %}

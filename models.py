@@ -1,5 +1,3 @@
-import random
-
 from datetime import datetime
 
 from sqlalchemy.sql.sqltypes import Boolean
@@ -15,23 +13,14 @@ class Photo(Base):
     created_on = Column(DateTime(), default=datetime.now)
     detect = Column(Boolean)
 
-    def __repr__(self):
-        return f'<Фотография {self.id} сделана {self.created_on}>'
-
 
 class User(Base):
-    __tablename__ = 'users'
+    __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    username = Column(String(50), unique=True)
+    password = Column(String(128))
+    role = Column(String(10))
     email = Column(String(120), unique=True)
-
-    def __repr__(self):
-        return f'<User {self.name} {self.email}>'
-
-
-class RandomChecker():
-    def __call__(self):
-        return random.choice([True, False])
 
 
 if __name__ == "__main__":
