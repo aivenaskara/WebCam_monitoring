@@ -1,5 +1,5 @@
-user = 'my_mail@gmail.com'
-key = 'my_mail_password'
+user = 'kirillmentyukov@gmail.com'
+key = 'Testsword'
 
 subject = 'Warning! Human detected.'
 text = 'Human decected in your guarded zone. You can see foto on your page.'

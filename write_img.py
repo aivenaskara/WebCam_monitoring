@@ -3,7 +3,7 @@ import pickle
 
 from PIL import Image
 from time import sleep
-from smtplib import SMTPServerDisconnected
+from smtplib import SMTPServerDisconnected, SMTPAuthenticationError
 
 from db import db_session
 from get_img import get_img
@@ -24,7 +24,8 @@ def write_img():
         try:
             if with_human and send_letter_pause not in range(1, EMAIL_PAUSE):
                 send_email_warning()
-        except SMTPServerDisconnected as e:
+        # add SMTPAuthenticationError!!!
+        except (SMTPServerDisconnected, SMTPAuthenticationError) as e:
             print(e)
         # BGR to RGB transformations
         vis_image = vis_image[:, :, [2, 1, 0]]
