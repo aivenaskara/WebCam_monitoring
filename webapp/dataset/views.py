@@ -17,9 +17,9 @@ def index():
     page = request.args.get('page', 1, type=int)
     records_list = Photo.query.filter(Photo.created_on).order_by(Photo.created_on.desc()).paginate(page, 10, False)
     next_url = url_for('dataset.index', page=records_list.next_num) \
-        if records_list.has_next else '?page='+str(page)
+        if records_list.has_next else '#'
     prev_url = url_for('dataset.index', page=records_list.prev_num) \
-        if records_list.has_prev else '?page=1'
+        if records_list.has_prev else '#'
     """
     form = DetectionON()
     if form.detection_on:
@@ -37,7 +37,7 @@ def index():
     )
 
 
-@blueprint.route('/dataset/<int:photo_id>')
+@blueprint.route('/<int:photo_id>')
 def show_photo(photo_id):
     if current_user.is_anonymous:
         return redirect(url_for('index'))
@@ -49,3 +49,4 @@ def show_photo(photo_id):
         page_title=cam_photo.created_on.strftime('%d.%m.%Y %H:%M:%S'),
         base64img=base64img
     )
+
