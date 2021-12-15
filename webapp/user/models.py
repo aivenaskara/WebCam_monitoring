@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(128))
     role = db.Column(db.String(10))
+    camera = db.Column(db.String(50), unique=True)
     email = db.Column(db.String(120), unique=True)
 
     def set_password(self, password):

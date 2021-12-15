@@ -20,6 +20,7 @@ class User(Base):
     username = Column(String(50), unique=True)
     password = Column(String(128))
     role = Column(String(10))
+    camera = Column(String(50), unique=True)
     email = Column(String(120), unique=True)
 
 
